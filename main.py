@@ -50,35 +50,72 @@
 # -----------------------------------3 - misol ----------------------------------------
 
 
-def fun(file_name, symbol):
-    if symbol in "*":
-        return True
+# def fun(file_name, symbol):
+#     if symbol in "*":
+#         return True
 
-    parts = symbol.split('*')
-    start_index = 0
+#     parts = symbol.split('*')
+#     start_index = 0
 
-    for part in parts:
-        i = 0
-        while i < len(part) and start_index < len(file_name):
-            if part[i] == '?':
-                start_index += 1
-            elif part[i] != file_name[start_index]:
-                return False
-            else:
-                start_index += 1
-            i += 1
+#     for part in parts:
+#         i = 0
+#         while i < len(part) and start_index < len(file_name):
+#             if part[i] == '?':
+#                 start_index += 1
+#             elif part[i] != file_name[start_index]:
+#                 return False
+#             else:
+#                 start_index += 1
+#             i += 1
         
-        if i < len(part):
-            return False
+#         if i < len(part):
+#             return False
 
-        while start_index < len(file_name) and file_name[start_index] != part[0]:
-            start_index += 1
+#         while start_index < len(file_name) and file_name[start_index] != part[0]:
+#             start_index += 1
 
-    return True
+#     return True
 
 
-file_name = input("File name: ")
-syml = input("Enter Symbol(* or ? or txt): ")
+# file_name = input("File name: ")
+# syml = input("Enter Symbol(* or ? or txt): ")
 
-resualt = fun(file_name,syml)
-print(resualt)
+# resualt = fun(file_name,syml)
+# print(resualt)
+
+# ----------------------------------- 4 - misol ----------------------------------------
+
+def convert_to_writ_format(date_str):
+    months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ]
+    
+    date, time = date_str.split()
+    
+    day, month, year = date.split('.')
+    
+    month_name = months[int(month) - 1]
+    
+    hours, minutes = time.split(':')
+    
+    day = int(day)
+    hours = int(hours)
+    minutes = int(minutes)
+    
+    human_date = f"{day} {month_name} {year} year"
+    
+    if hours == 1:
+        human_time = f"{hours} hour"
+    else:
+        human_time = f"{hours} hours"
+        
+    if minutes == 1:
+        human_time += f" {minutes} minute"
+    else:
+        human_time += f" {minutes} minutes"
+    
+    return f'"{human_date} {human_time}"'
+
+n = input("Enter full time date: ")
+print(convert_to_writ_format(n))
